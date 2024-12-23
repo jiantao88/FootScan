@@ -1,0 +1,95 @@
+import { UserProfile } from '@/types/profile';
+
+export const mockUserProfile: UserProfile = {
+  id: '1',
+  username: 'Web3Explorer',
+  avatar: 'https://avatars.githubusercontent.com/u/1?v=4',
+  bio: '热衷于探索 Web3 和区块链技术的创新者',
+  walletAddress: '0x1234567890abcdef1234567890abcdef12345678',
+  tokenBalance: 1250,
+  contributionPoints: 850,
+  level: 5,
+  badges: [
+    {
+      id: '1',
+      name: '早期贡献者',
+      description: '项目早期的活跃贡献者',
+      type: 'gold',
+      earnedAt: '2023-12-01',
+    },
+    {
+      id: '2',
+      name: '分析专家',
+      description: '完成超过50次食品分析',
+      type: 'platinum',
+      earnedAt: '2023-12-10',
+    },
+    {
+      id: '3',
+      name: '社区卫士',
+      description: '参与超过100次社区投票',
+      type: 'diamond',
+      earnedAt: '2023-12-15',
+    },
+    {
+      id: '4',
+      name: '质量保证',
+      description: '提供高质量的分析报告',
+      type: 'silver',
+      earnedAt: '2023-12-20',
+    },
+    {
+      id: '5',
+      name: '新手引导',
+      description: '帮助新用户了解平台',
+      type: 'bronze',
+      earnedAt: '2023-12-22',
+    },
+  ],
+  uploads: [
+    {
+      id: '1',
+      title: '可口可乐配料分析',
+      status: 'completed',
+      score: 85,
+      date: '2023-12-22',
+    },
+    {
+      id: '2',
+      title: '百事可乐配料分析',
+      status: 'completed',
+      score: 82,
+      date: '2023-12-21',
+    },
+    {
+      id: '3',
+      title: '雪碧配料分析',
+      status: 'pending',
+      score: null,
+      date: '2023-12-20',
+    },
+  ],
+  votes: [
+    {
+      id: '1',
+      title: '2024年度食品安全提案',
+      choice: '支持',
+      votedAt: '2023-12-22',
+      rewardAmount: 50,
+    },
+    {
+      id: '2',
+      title: '社区治理方案投票',
+      choice: '反对',
+      votedAt: '2023-12-21',
+      rewardAmount: 30,
+    },
+    {
+      id: '3',
+      title: '平台功能更新提案',
+      choice: '支持',
+      votedAt: '2023-12-20',
+      rewardAmount: 40,
+    },
+  ],
+};
