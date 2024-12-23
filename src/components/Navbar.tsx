@@ -1,9 +1,10 @@
 'use client';
-import { ConnectButton, lightTheme, useActiveAccount } from "thirdweb/react";
+import { lightTheme, useActiveAccount } from "thirdweb/react";
 import Link from "next/link";
 import { useState } from "react";
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { client } from "@/app/client";
+import { ConnectButton } from './ConnectButton';
 
 const Navbar = () => {
     const account = useActiveAccount();
@@ -59,15 +60,7 @@ const Navbar = () => {
                         </button>
 
                         {/* Connect Wallet Button */}
-                        <ConnectButton
-                            client={client}
-                            theme={customTheme}
-                            detailsButton={{
-                                style: {
-                                    maxHeight: "40px",
-                                }
-                            }}
-                        />
+                        <ConnectButton />
 
                         {/* Mobile Menu Button */}
                         <button

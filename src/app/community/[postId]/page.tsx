@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { FaRegThumbsUp, FaCheckCircle } from 'react-icons/fa';
-import { ConnectButton, useActiveAccount } from 'thirdweb/react';
+import { ConnectButton } from '@/components/ConnectButton';
 import { client } from '../../client';
 import {
   getPost,
@@ -205,22 +205,24 @@ export default function PostDetailPage({
           {account ? (
             <div className="mb-6">
               <textarea
-                className="w-full border border-gray-300 rounded-lg p-3 mb-2"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                rows={4}
                 placeholder="写下你的评论..."
-                rows={3}
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
               />
-              <button
-                onClick={handleComment}
-                className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
-              >
-                发表评论
-              </button>
+              <div className="mt-2 flex justify-end">
+                <button
+                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  onClick={handleComment}
+                >
+                  发表评论
+                </button>
+              </div>
             </div>
           ) : (
             <div className="mb-6 text-center">
-              <ConnectButton client={client} />
+              <ConnectButton />
               <p className="mt-2 text-sm text-gray-500">连接钱包后即可评论</p>
             </div>
           )}

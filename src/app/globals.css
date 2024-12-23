@@ -10,6 +10,9 @@
     --accent-gradient: linear-gradient(135deg, #6366f1, #3b82f6, #22d3ee);
     --button-gradient: linear-gradient(90deg, #6366f1, #22d3ee);
     --text-color: #d1d5db;
+    --tw-connect-wallet-bg: white;
+    --tw-connect-wallet-color: black;
+    --tw-connect-wallet-border-color: #e5e7eb;
 }
 
 /* Define custom utility classes */
@@ -110,7 +113,21 @@
     .modal-button:hover {
         transform: scale(1.05);
     }
+
+    /* Thirdweb 钱包选择器样式覆盖 */
+    .tw-connect-wallet {
+        background-color: white !important;
+    }
+
+    .tw-connect-wallet-modal {
+        background-color: white !important;
+    }
+
+    .tw-connect-wallet-modal-overlay {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
 }
+
 /* Add this to your global stylesheet */
 @keyframes spin {
     0% {
