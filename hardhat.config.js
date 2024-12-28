@@ -20,13 +20,35 @@ module.exports = {
     artifacts: "./artifacts"
   },
   networks: {
-    mantle: {
-      url: `https://rpc.testnet.mantle.xyz`,
+    arbitrumSepolia: {
+      url: "https://sepolia-rollup.arbitrum.io/rpc",
+      chainId: 421614,
+      accounts: [process.env.PRIVATE_KEY]
+    },
+    arbitrumStylus: {
+      url: "https://stylus-testnet.arbitrum.io/rpc",
+      chainId: 23011913,
       accounts: [process.env.PRIVATE_KEY]
     }
   },
   typechain: {
     outDir: "src/types/contracts",
     target: "ethers-v6"
+  },
+  etherscan: {
+    apiKey: {
+      arbitrumSepolia: process.env.ARBISCAN_API_KEY,
+      arbitrumStylus: process.env.ARBISCAN_API_KEY
+    },
+    customChains: [
+      {
+        network: "arbitrumStylus",
+        chainId: 23011913,
+        urls: {
+          apiURL: "https://api-stylus-testnet.arbitrum.io/api",
+          browserURL: "https://stylus-testnet-explorer.arbitrum.io"
+        }
+      }
+    ]
   }
 };

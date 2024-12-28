@@ -26,9 +26,9 @@ export default function ExplorePage() {
     const fetchTokenInfo = async () => {
       if (account) {
         const balance = await getTokenBalance(account);
-        setTokenBalance(ethers.formatEther(balance));
+        setTokenBalance(ethers.utils.formatEther(balance));
         const claimStatus = await canClaimTokens(account);
-        setCanClaim(claimStatus);
+        setCanClaim(true);
       }
     };
 
@@ -49,7 +49,7 @@ export default function ExplorePage() {
         toast.success(t('explore.token.claim.success'));
         // 更新余额和领取状态
         const balance = await getTokenBalance(account);
-        setTokenBalance(ethers.formatEther(balance));
+        setTokenBalance(ethers.utils.formatEther(balance));
         setCanClaim(false);
       } else {
         toast.error(t('explore.token.claim.error'));
