@@ -4,6 +4,12 @@ import "./globals.css";
 import { ThirdwebProvider } from "thirdweb/react";
 import { Toaster } from 'react-hot-toast';
 import Navbar from "@/components/Navbar";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import dynamic from 'next/dynamic';
+
+const I18nProvider = dynamic(() => import('@/i18n/config.tsx'), {
+  ssr: false
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +28,13 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-100 text-slate-700">
         <ThirdwebProvider>
-          <Navbar />
-          {children}
-          <Toaster position="top-center" />
+          <I18nProvider>
+            <LanguageProvider>
+              <Navbar />
+              {children}
+              <Toaster position="top-center" />
+            </LanguageProvider>
+          </I18nProvider>
         </ThirdwebProvider>
       </body>
     </html>

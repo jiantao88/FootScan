@@ -4,12 +4,15 @@ import { Recipe } from '@/types/explore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaStar, FaHeart, FaClock, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 interface RecipeCardProps {
   recipe: Recipe;
 }
 
 export default function RecipeCard({ recipe }: RecipeCardProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
       {/* 图片容器 */}
@@ -26,7 +29,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
             href={`/analyze/${recipe.id}`}
             className="opacity-0 group-hover:opacity-100 bg-orange-500 text-white px-4 py-2 rounded-lg transform translate-y-2 group-hover:translate-y-0 transition-all"
           >
-            {recipe.verified ? '查看详情' : '参与分析'}
+            {recipe.verified ? t('scan.card.view_details') : t('scan.card.participate')}
           </Link>
         </div>
         {/* 验证状态标签 */}
@@ -36,13 +39,15 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           {recipe.verified ? (
             <>
               <FaCheckCircle className="w-4 h-4" />
-              <span>已验证</span>
-              <span className="text-xs">({recipe.verificationCount})</span>
+              <span>{t('scan.card.verified')}</span>
+              <span className="text-xs">
+                ({t('scan.card.verification_count', { count: recipe.verificationCount })})
+              </span>
             </>
           ) : (
             <>
               <FaExclamationCircle className="w-4 h-4" />
-              <span>待验证</span>
+              <span>{t('scan.card.pending')}</span>
             </>
           )}
         </div>
@@ -72,16 +77,16 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         {/* 评分和统计 */}
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center space-x-4">
-            <span className="flex items-center text-yellow-400">
+            <span className="flex items-center text-yellow-400" title={t('scan.card.rating')}>
               <FaStar className="mr-1" />
               {recipe.rating}
             </span>
-            <span className="flex items-center text-gray-500">
+            <span className="flex items-center text-gray-500" title={t('scan.card.likes')}>
               <FaHeart className="mr-1" />
               {recipe.likes}
             </span>
           </div>
-          <span className="flex items-center text-gray-500">
+          <span className="flex items-center text-gray-500" title={t('scan.card.analysis_time')}>
             <FaClock className="mr-1" />
             {recipe.analysisTime}
           </span>
@@ -94,7 +99,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
               key={index}
               className="px-2 py-1 text-xs font-medium bg-orange-50 text-orange-600 rounded-full"
             >
-              {tag}
+              {t(`scan.card.tags.${tag.toLowerCase().replace(/-/g, '_')}`)}
             </span>
           ))}
         </div>

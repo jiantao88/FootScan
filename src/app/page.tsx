@@ -2,9 +2,16 @@
 import { useActiveAccount } from "thirdweb/react";
 import Link from 'next/link';
 import { FaSearch, FaShieldAlt, FaUsers, FaChartBar, FaStar, FaClock } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 export default function Home() {
   const account = useActiveAccount();
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t('home.title');
+  }, [t]);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-orange-50">
@@ -16,17 +23,16 @@ export default function Home() {
             <div className="lg:grid lg:grid-cols-12 lg:gap-8">
               <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
                 <h1 className="text-4xl tracking-tight font-bold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block">食品安全</span>
-                  <span className="block text-orange-500">从配料表开始</span>
+                  <span className="block">{t('hero.title')}</span>
+                  <span className="block text-orange-500">{t('hero.subtitle')}</span>
                 </h1>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                  使用 AI + Web3 技术，智能分析食品配料表，确保食品安全。
-                  社区共建，让每一份食品都透明可信。
+                  {t('hero.description')}
                 </p>
                 <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left">
                   <Link href="/upload">
                     <button className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-orange-500 to-rose-500 hover:opacity-90">
-                      开始分析
+                      {t('hero.start_button')}
                     </button>
                   </Link>
                 </div>
@@ -54,9 +60,9 @@ export default function Home() {
               <div className="text-orange-500 mb-4">
                 <FaSearch className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">智能识别</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('features.items.ai_analysis.title')}</h3>
               <p className="text-gray-600">
-                自动识别配料表图片，快速提取文字信息
+                {t('features.items.ai_analysis.description')}
               </p>
             </div>
 
@@ -65,9 +71,9 @@ export default function Home() {
               <div className="text-orange-500 mb-4">
                 <FaShieldAlt className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">安全分析</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('features.items.blockchain.title')}</h3>
               <p className="text-gray-600">
-                AI 分析配料成分，评估潜在风险
+                {t('features.items.blockchain.description')}
               </p>
             </div>
 
@@ -76,9 +82,9 @@ export default function Home() {
               <div className="text-orange-500 mb-4">
                 <FaUsers className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">社区共治</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('features.items.community.title')}</h3>
               <p className="text-gray-600">
-                用户参与评价，共同维护食品安全
+                {t('features.items.community.description')}
               </p>
             </div>
 
@@ -87,9 +93,9 @@ export default function Home() {
               <div className="text-orange-500 mb-4">
                 <FaChartBar className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">数据透明</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('features.items.realtime.title')}</h3>
               <p className="text-gray-600">
-                分析结果上链存证，确保数据可信
+                {t('features.items.realtime.description')}
               </p>
             </div>
           </div>
@@ -100,9 +106,9 @@ export default function Home() {
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">热门分析</h2>
+            <h2 className="text-3xl font-bold text-gray-900">{t('analysis.title')}</h2>
             <p className="mt-4 text-xl text-gray-600">
-              发现社区最新分析的食品配料，获取安全评估报告
+              {t('analysis.description')}
             </p>
           </div>
 
@@ -116,8 +122,8 @@ export default function Home() {
               />
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold">某品牌饼干</h3>
-                  <span className="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">安全</span>
+                  <h3 className="text-lg font-semibold">{t('analysis.cards.card1.title')}</h3>
+                  <span className="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">{t('analysis.status.safe')}</span>
                 </div>
                 <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                   <div className="flex items-center">
@@ -126,17 +132,17 @@ export default function Home() {
                   </div>
                   <div className="flex items-center">
                     <FaClock className="text-gray-400 mr-1" />
-                    <span>2小时前</span>
+                    <span>{t('analysis.time.hours_ago', { hours: 2 })}</span>
                   </div>
                   <div className="flex items-center">
                     <FaUsers className="text-gray-400 mr-1" />
-                    <span>15次验证</span>
+                    <span>{t('analysis.verifications', { count: 15 })}</span>
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">主要成分：面粉、糖、植物油...</p>
+                <p className="text-gray-600 text-sm mb-4">{t('analysis.cards.card1.ingredients')}</p>
                 <Link href="/analysis/1">
                   <button className="w-full px-4 py-2 bg-orange-50 text-orange-500 rounded-lg hover:bg-orange-100 transition-colors">
-                    查看详情
+                    {t('analysis.view_details')}
                   </button>
                 </Link>
               </div>
@@ -151,8 +157,8 @@ export default function Home() {
               />
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold">某品牌饮料</h3>
-                  <span className="bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full">需注意</span>
+                  <h3 className="text-lg font-semibold">{t('analysis.cards.card2.title')}</h3>
+                  <span className="bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full">{t('analysis.status.warning')}</span>
                 </div>
                 <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                   <div className="flex items-center">
@@ -161,17 +167,17 @@ export default function Home() {
                   </div>
                   <div className="flex items-center">
                     <FaClock className="text-gray-400 mr-1" />
-                    <span>3小时前</span>
+                    <span>{t('analysis.time.hours_ago', { hours: 3 })}</span>
                   </div>
                   <div className="flex items-center">
                     <FaUsers className="text-gray-400 mr-1" />
-                    <span>12次验证</span>
+                    <span>{t('analysis.verifications', { count: 12 })}</span>
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">主要成分：水、糖、果汁、防腐剂...</p>
+                <p className="text-gray-600 text-sm mb-4">{t('analysis.cards.card2.ingredients')}</p>
                 <Link href="/analysis/2">
                   <button className="w-full px-4 py-2 bg-orange-50 text-orange-500 rounded-lg hover:bg-orange-100 transition-colors">
-                    查看详情
+                    {t('analysis.view_details')}
                   </button>
                 </Link>
               </div>
@@ -186,8 +192,8 @@ export default function Home() {
               />
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold">某品牌零食</h3>
-                  <span className="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">安全</span>
+                  <h3 className="text-lg font-semibold">{t('analysis.cards.card3.title')}</h3>
+                  <span className="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">{t('analysis.status.safe')}</span>
                 </div>
                 <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                   <div className="flex items-center">
@@ -196,17 +202,17 @@ export default function Home() {
                   </div>
                   <div className="flex items-center">
                     <FaClock className="text-gray-400 mr-1" />
-                    <span>4小时前</span>
+                    <span>{t('analysis.time.hours_ago', { hours: 4 })}</span>
                   </div>
                   <div className="flex items-center">
                     <FaUsers className="text-gray-400 mr-1" />
-                    <span>18次验证</span>
+                    <span>{t('analysis.verifications', { count: 10 })}</span>
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">主要成分：玉米、植物油、调味料...</p>
+                <p className="text-gray-600 text-sm mb-4">{t('analysis.cards.card3.ingredients')}</p>
                 <Link href="/analysis/3">
                   <button className="w-full px-4 py-2 bg-orange-50 text-orange-500 rounded-lg hover:bg-orange-100 transition-colors">
-                    查看详情
+                    {t('analysis.view_details')}
                   </button>
                 </Link>
               </div>
@@ -216,7 +222,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link href="/explore">
               <button className="px-8 py-3 bg-white text-orange-500 border border-orange-500 rounded-full hover:bg-orange-50 transition-colors">
-                查看更多分析
+                {t('analysis.view_more')}
               </button>
             </Link>
           </div>
@@ -227,11 +233,11 @@ export default function Home() {
       <div className="bg-gradient-to-r from-orange-400 to-rose-400 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-8">
-            加入我们，共建食品安全社区
+            {t('cta.title')}
           </h2>
           <Link href="/upload">
             <button className="bg-white text-orange-500 px-8 py-3 rounded-full font-semibold hover:bg-orange-50 transition-colors">
-              开始分析
+              {t('cta.start_button')}
             </button>
           </Link>
         </div>
